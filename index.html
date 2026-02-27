@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/230.png">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -30,27 +31,6 @@
         <div class="loader-bar">
             <div class="loader-bar-fill"></div>
         </div>
-    </div>
-
-    <!-- Canvas for brush cursor -->
-    <canvas id="cursor-canvas"></canvas>
-
-    <!-- Custom cursor element -->
-    <div class="custom-cursor" id="custom-cursor">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 28L8 24L26 6C27.1046 4.89543 27.1046 3.10457 26 2V2C24.8954 0.89543 23.1046 0.89543 22 2L4 20L0 28C0 28 2.5 28.5 4 28Z" fill="url(#brush-grad)"/>
-            <path d="M4 20L8 24" stroke="#b0e0e6" stroke-width="1.5"/>
-            <path d="M22 2L26 6" stroke="#5ef5ff" stroke-width="1"/>
-            <ellipse cx="2" cy="27" rx="3" ry="1.5" fill="#00e5ff" opacity="0.6"/>
-            <defs>
-                <linearGradient id="brush-grad" x1="4" y1="28" x2="26" y2="2" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#006070"/>
-                    <stop offset="0.3" stop-color="#00a5b8"/>
-                    <stop offset="0.7" stop-color="#5ef5ff"/>
-                    <stop offset="1" stop-color="#e0fcff"/>
-                </linearGradient>
-            </defs>
-        </svg>
     </div>
 
     <!-- Navigation -->
@@ -400,7 +380,6 @@
         </div>
     </div>
 
-    <script src="js/cursor.js"></script>
     <script src="js/main.js"></script>
     <script src="js/gallery.js"></script>
 </body>
