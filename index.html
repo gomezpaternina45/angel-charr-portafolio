@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Charr — Diseñador</title>
+    <meta name="description" content="Portafolio de Angel Charr, diseñador gráfico. Branding, UI/UX, ilustración y más.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <img src="img/230.png" alt="Angel Charr" class="loader-logo">
+        <div class="loader-text">
+            <span class="loader-letter">A</span>
+            <span class="loader-letter">n</span>
+            <span class="loader-letter">g</span>
+            <span class="loader-letter">e</span>
+            <span class="loader-letter">l</span>
+            <span class="loader-letter">&nbsp;</span>
+            <span class="loader-letter">C</span>
+            <span class="loader-letter">h</span>
+            <span class="loader-letter">a</span>
+            <span class="loader-letter">r</span>
+            <span class="loader-letter">r</span>
+        </div>
+        <div class="loader-bar">
+            <div class="loader-bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- Canvas for brush cursor -->
+    <canvas id="cursor-canvas"></canvas>
+
+    <!-- Custom cursor element -->
+    <div class="custom-cursor" id="custom-cursor">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 28L8 24L26 6C27.1046 4.89543 27.1046 3.10457 26 2V2C24.8954 0.89543 23.1046 0.89543 22 2L4 20L0 28C0 28 2.5 28.5 4 28Z" fill="url(#brush-grad)"/>
+            <path d="M4 20L8 24" stroke="#b0e0e6" stroke-width="1.5"/>
+            <path d="M22 2L26 6" stroke="#5ef5ff" stroke-width="1"/>
+            <ellipse cx="2" cy="27" rx="3" ry="1.5" fill="#00e5ff" opacity="0.6"/>
+            <defs>
+                <linearGradient id="brush-grad" x1="4" y1="28" x2="26" y2="2" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#006070"/>
+                    <stop offset="0.3" stop-color="#00a5b8"/>
+                    <stop offset="0.7" stop-color="#5ef5ff"/>
+                    <stop offset="1" stop-color="#e0fcff"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="#hero" class="nav-logo"><img src="img/230.png" alt="Angel Charr"></a>
+        <div class="nav-links">
+            <a href="#projects" class="nav-link" data-text="Proyectos">Proyectos</a>
+            <a href="#about" class="nav-link" data-text="Sobre mí">Sobre mí</a>
+            <a href="#contact" class="nav-link" data-text="Contacto">Contacto</a>
+        </div>
+        <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#projects" class="mobile-link">Proyectos</a>
+        <a href="#about" class="mobile-link">Sobre mí</a>
+        <a href="#contact" class="mobile-link">Contacto</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="img/YTDown.com_YouTube_BUENA-VIDA-BEACH-FESTIVAL-2023-DAY-1-REC_Media_rjM7Qgtrbzw_001_1080p.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay"></div>
+        <div class="hero-bg-gradient"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-subtitle reveal-text">
+                    <span>Diseñador Gráfico & Creativo</span>
+                </div>
+                <h1 class="hero-title">
+                    <div class="title-line reveal-text"><span>Angel</span></div>
+                    <div class="title-line reveal-text"><span>Charr</span></div>
+                </h1>
+                <p class="hero-description reveal-text">
+                    <span>Transformando ideas en experiencias visuales memorables</span>
+                </p>
+                <a href="#projects" class="hero-cta reveal-text">
+                    <span>Ver mi trabajo</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="hero-photo reveal-text">
+                <span><img src="img/ChatGPT Image 27 feb 2026, 02_57_22 p.m..png" alt="Angel Charr"></span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-header">
+            <span class="section-label reveal-text"><span>Portafolio</span></span>
+            <h2 class="section-title reveal-text"><span>Proyectos Seleccionados</span></h2>
+        </div>
+
+        <div class="project-filters reveal-text">
+            <span>
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="uiux">UI/UX</button>
+                <button class="filter-btn" data-filter="ilustracion">Ilustración</button>
+                <button class="filter-btn" data-filter="editorial">Editorial</button>
+            </span>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+            <div class="project-card" data-category="branding" data-index="0">
+                <div class="project-image">
+                    <img src="img/Foto13.png" alt="Empaque de Café | Hotel Caribe">
+                    <div class="project-overlay">
+                        <span class="project-category">Branding</span>
+                        <h3 class="project-title">Empaque de Café</h3>
+                        <p class="project-desc">Diseño de packaging para Hotel Caribe</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="editorial" data-index="1">
+                <div class="project-image">
+                    <img src="img/Foto10.png" alt="Menú Restaurante">
+                    <div class="project-overlay">
+                        <span class="project-category">Editorial</span>
+                        <h3 class="project-title">Menú Restaurante</h3>
+                        <p class="project-desc">Diseño de menú para restaurante</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="ilustracion" data-index="2">
+                <div class="project-image">
+                    <img src="img/Foto14.png" alt="Barcelona vs Real Madrid">
+                    <div class="project-overlay">
+                        <span class="project-category">Ilustración</span>
+                        <h3 class="project-title">Barcelona vs Real Madrid</h3>
+                        <p class="project-desc">Ilustración deportiva digital</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="branding" data-index="3">
+                <div class="project-image">
+                    <img src="img/Foto1.jpg" alt="Stand Modular | The Club">
+                    <div class="project-overlay">
+                        <span class="project-category">Branding</span>
+                        <h3 class="project-title">Stand Modular</h3>
+                        <p class="project-desc">Diseño de stand 3x3 para The Club</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="editorial" data-index="4">
+                <div class="project-image">
+                    <img src="img/Foto2.jpg" alt="Postal de Bienvenida">
+                    <div class="project-overlay">
+                        <span class="project-category">Editorial</span>
+                        <h3 class="project-title">Postal de Bienvenida</h3>
+                        <p class="project-desc">Diseño de postal para hotel</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="uiux" data-index="5">
+                <div class="project-image">
+                    <img src="img/Foto4.jpg" alt="Menú Digital | Alma">
+                    <div class="project-overlay">
+                        <span class="project-category">UI/UX</span>
+                        <h3 class="project-title">Menú Digital</h3>
+                        <p class="project-desc">Diseño de menú digital para Alma</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="branding" data-index="6">
+                <div class="project-image">
+                    <img src="img/Foto7.jpg" alt="Todo Incluido | Hotel Caribe">
+                    <div class="project-overlay">
+                        <span class="project-category">Branding</span>
+                        <h3 class="project-title">Todo Incluido</h3>
+                        <p class="project-desc">Campaña para Hotel Caribe</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="uiux" data-index="7">
+                <div class="project-image">
+                    <img src="img/Foto3.jpg" alt="San Valentín | Hotel Caribe">
+                    <div class="project-overlay">
+                        <span class="project-category">UI/UX</span>
+                        <h3 class="project-title">San Valentín</h3>
+                        <p class="project-desc">Campaña digital Hotel Caribe</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="branding" data-index="8">
+                <div class="project-image">
+                    <img src="img/Foto6.jpg" alt="Roll Up | The Club">
+                    <div class="project-overlay">
+                        <span class="project-category">Branding</span>
+                        <h3 class="project-title">Roll Up | The Club</h3>
+                        <p class="project-desc">Diseño de roll up publicitario</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="projects-behance reveal-text">
+            <span>
+                <a href="https://www.behance.net/angelcharr" target="_blank" rel="noopener" class="behance-btn">
+                    Ver más en Behance
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-left">
+                <span class="section-label reveal-text"><span>Sobre mí</span></span>
+                <h2 class="section-title reveal-text"><span>Creando con propósito</span></h2>
+                <div class="about-text">
+                    <p class="reveal-text"><span>Soy Angel Charr, diseñador gráfico apasionado por crear experiencias visuales que conectan marcas con personas. Mi enfoque combina estética, estrategia y funcionalidad.</span></p>
+                    <p class="reveal-text"><span>Cada proyecto es una oportunidad para contar una historia única a través del diseño, cuidando cada detalle desde la conceptualización hasta la ejecución final.</span></p>
+                </div>
+            </div>
+            <div class="about-right">
+                <div class="skills-grid">
+                    <div class="skill-item reveal-text">
+                        <span>
+                            <div class="skill-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                                    <path d="M2 17L12 22L22 17"/>
+                                    <path d="M2 12L12 17L22 12"/>
+                                </svg>
+                            </div>
+                            <h4>Branding</h4>
+                            <p>Identidad visual y sistemas de marca</p>
+                        </span>
+                    </div>
+                    <div class="skill-item reveal-text">
+                        <span>
+                            <div class="skill-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                    <path d="M8 21H16"/>
+                                    <path d="M12 17V21"/>
+                                </svg>
+                            </div>
+                            <h4>UI/UX Design</h4>
+                            <p>Interfaces intuitivas y atractivas</p>
+                        </span>
+                    </div>
+                    <div class="skill-item reveal-text">
+                        <span>
+                            <div class="skill-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 19L19 12L22 15L15 22L12 19Z"/>
+                                    <path d="M18 13L16.5 5.5L2 2L5.5 16.5L13 18L18 13Z"/>
+                                    <circle cx="10" cy="10" r="2"/>
+                                </svg>
+                            </div>
+                            <h4>Ilustración</h4>
+                            <p>Arte digital y vectorial</p>
+                        </span>
+                    </div>
+                    <div class="skill-item reveal-text">
+                        <span>
+                            <div class="skill-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                                    <path d="M6.5 2H20V22H6.5A2.5 2.5 0 014 19.5V4.5A2.5 2.5 0 016.5 2Z"/>
+                                </svg>
+                            </div>
+                            <h4>Editorial</h4>
+                            <p>Diseño de publicaciones y revistas</p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="tools reveal-text">
+                    <span>
+                        <h4 class="tools-title">Herramientas</h4>
+                        <div class="tools-list">
+                            <span class="tool-tag">Photoshop</span>
+                            <span class="tool-tag">Illustrator</span>
+                            <span class="tool-tag">Figma</span>
+                            <span class="tool-tag">After Effects</span>
+                            <span class="tool-tag">InDesign</span>
+                            <span class="tool-tag">Procreate</span>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <span class="section-label reveal-text"><span>Contacto</span></span>
+            <h2 class="contact-title reveal-text"><span>Trabajemos juntos</span></h2>
+            <p class="contact-subtitle reveal-text"><span>¿Tienes un proyecto en mente? Me encantaría escucharte.</span></p>
+
+            <div class="contact-links">
+                <a href="mailto:hola@angelcharr.com" class="contact-link reveal-text">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="M22 4L12 13L2 4"/>
+                        </svg>
+                        hola@angelcharr.com
+                    </span>
+                </a>
+                <a href="https://www.behance.net/angelcharr" target="_blank" rel="noopener" class="contact-link reveal-text">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                        </svg>
+                        Behance
+                    </span>
+                </a>
+            </div>
+
+            <div class="contact-cta reveal-text">
+                <span>
+                    <a href="mailto:hola@angelcharr.com" class="cta-button">
+                        Iniciar un proyecto
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="footer-logo">Angel Charr</span>
+            <span class="footer-year">&copy; 2026</span>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6L18 18"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Anterior">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18L9 12L15 6"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Siguiente">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 6L15 12L9 18"/>
+            </svg>
+        </button>
+        <div class="lightbox-content" id="lightbox-content">
+            <img class="lightbox-img" id="lightbox-img" src="" alt="">
+            <div class="lightbox-info">
+                <span class="lightbox-category" id="lightbox-category"></span>
+                <h3 class="lightbox-title" id="lightbox-title"></h3>
+                <p class="lightbox-desc" id="lightbox-desc"></p>
+                <span class="lightbox-counter" id="lightbox-counter"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cursor.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>
