@@ -1,386 +1,526 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angel Charr — Diseñador</title>
-    <meta name="description" content="Portafolio de Angel Charr, diseñador gráfico. Branding, UI/UX, ilustración y más.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/230.png">
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ángel Charr — Diseñador Gráfico & Realizador Audiovisual</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dxpap6uiq/image/upload/f_auto,q_auto,w_800/v1775855773/favicon_mtdwfe.png">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0c0c0b;--bg2:#111110;--bg3:#161614;--text:#f0ece5;--text2:#c8c4bc;
+  --muted:#8a867e;--accent:#c8a96e;--accent2:#e8c98a;--border:#252520;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:"Cormorant Garamond",serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none;}
+#cd{width:7px;height:7px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .14s;opacity:.9;}
+#cr{width:32px;height:32px;border:1px solid rgba(200,169,110,.32);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .35s,height .35s,border-color .35s,background .35s;}
+#curtain{position:fixed;inset:0;z-index:9000;pointer-events:all;}
+#ci{position:absolute;inset:0;background:#080807;transform:translateY(0%);}
+#curtain.out #ci{transition:transform .8s cubic-bezier(.76,0,.24,1);transform:translateY(-100%);}
+#curtain.cover #ci{transition:transform .65s cubic-bezier(.76,0,.24,1);transform:translateY(0%);}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;justify-content:space-between;align-items:center;padding:1.4rem 3.5rem;background:rgba(12,12,11,.38);backdrop-filter:blur(14px);border-bottom:.5px solid rgba(240,236,229,.08);}
+.nav-logo{font-size:17px;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:.04em;}
+.nav-logo img{width:56px;height:auto;display:block;}
+.nav-links{display:flex;gap:2.5rem;align-items:center;}
+.nav-links a{font-family:"DM Mono",monospace;font-size:13px;letter-spacing:.14em;color:var(--text2);text-decoration:none;text-transform:uppercase;transition:color .25s;}
+.nav-links a:hover{color:var(--text);}
+.lang-btn{font-family:"DM Mono",monospace;font-size:13px;letter-spacing:.14em;color:var(--accent);background:transparent;border:1px solid rgba(200,169,110,.3);padding:6px 14px;cursor:none;text-transform:uppercase;transition:all .25s;}
+.lang-btn:hover{background:var(--accent);color:var(--bg);}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3.5rem 5rem;overflow:hidden;background:var(--bg);}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.46;z-index:0;filter:contrast(1.08) brightness(.95) saturate(1.04);transition:opacity .6s ease,filter .6s ease;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,11,.78) 0%,rgba(12,12,11,.32) 55%,rgba(12,12,11,.04) 100%);z-index:1;}.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 38%,rgba(240,236,229,.06) 0%,rgba(12,12,11,0) 38%,rgba(12,12,11,.38) 100%);}
+.hero-content{position:relative;z-index:2;}
+.hero-label{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:1.8rem;opacity:0;transform:translateY(14px);transition:opacity .9s .28s,transform .9s .28s;}
+.hero-label.in{opacity:1;transform:translateY(0);}
+.hero h1{font-size:clamp(2.9rem,5.6vw,5.8rem);font-weight:700;line-height:1;letter-spacing:-.018em;color:var(--text);max-width:980px;}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--accent);}
+.ch{display:inline-block;transform:translateY(115%);opacity:0;transition:transform .82s cubic-bezier(.16,1,.3,1),opacity .55s ease;}
+.ch.in{transform:translateY(0);opacity:1;}
+.hero h1 em .ch{color:var(--accent);}
+.hero-sub{font-size:1.48rem;line-height:1.72;color:var(--text2);margin-top:2rem;max-width:860px;font-weight:300;opacity:0;transform:translateY(14px);transition:opacity .9s 1s,transform .9s 1s;}
+.hero-sub.in{opacity:1;transform:translateY(0);}
+.hero-ctas{display:flex;gap:2rem;margin-top:2.5rem;align-items:center;opacity:0;transform:translateY(14px);transition:opacity .9s 1.18s,transform .9s 1.18s;}
+.hero-ctas.in{opacity:1;transform:translateY(0);}
+.btn-main{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--text);padding:14px 28px;text-decoration:none;transition:opacity .2s;}
+.btn-main:hover{opacity:.85;}
+.btn-ghost{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:3px;transition:color .25s,border-color .25s;}
+.btn-ghost:hover{color:var(--text);border-color:var(--muted);}
+.hero-scroll{position:absolute;bottom:2.5rem;right:3.5rem;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;transition:opacity .9s 1.45s;}
+.hero-scroll.in{opacity:1;}
+.hero-scroll span{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;writing-mode:vertical-rl;}
+.scroll-line{width:.5px;height:54px;background:linear-gradient(to bottom,transparent,var(--accent));animation:spulse 2s ease-in-out infinite;}
+@keyframes spulse{0%,100%{opacity:1;transform:scaleY(1);}50%{opacity:.3;transform:scaleY(.5);}}
+.ticker-wrap{width:100%;overflow:hidden;background:var(--bg2);border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:.9rem 0;}
+.ticker-track{display:flex;width:max-content;animation:ticker 42s linear infinite;}
+.ticker-track:hover{animation-play-state:paused;}
+.ticker-item{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:0 3rem;white-space:nowrap;transition:color .25s;}
+.ticker-item:hover{color:var(--accent);}
+.ticker-sep{color:var(--border);padding:0 .5rem;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.projects-section{padding:8rem 1.2rem 4rem;background:linear-gradient(to bottom,#0c0c0b,#161614,#0c0c0b);border-top:1px solid rgba(200,169,110,.1);border-bottom:0;}
+section{padding:8rem 3.5rem;background:var(--bg);}
+.sec-eyebrow{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:1rem;}
+.sec-title{font-size:clamp(2.2rem,4.5vw,4rem);font-weight:600;letter-spacing:-.02em;color:var(--text);margin-bottom:3.5rem;line-height:1.05;}
+.sec-title em{font-style:italic;font-weight:300;color:var(--accent);}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:3rem;}
+.filter-btn{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:transparent;border:.5px solid var(--border);padding:8px 18px;cursor:none;transition:all .2s;}
+.filter-btn:hover,.filter-btn.active{color:var(--text);border-color:var(--accent);background:rgba(200,169,110,.06);}
+.projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;width:100%;max-width:1760px;margin:0 auto;}
+.showcase-grid{margin-top:3.6rem;}
+.proj-card{position:relative;overflow:hidden;cursor:none;transition:transform .85s cubic-bezier(.23,1,.32,1),box-shadow .85s ease;}
+.proj-card.featured{grid-column:auto;}
+.proj-card .img-wrap{overflow:hidden;position:relative;}
+.proj-card img{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;transition:transform 1.05s cubic-bezier(.23,1,.32,1),filter 1.05s ease;will-change:transform;}
+.proj-card.featured img{aspect-ratio:16/7;}
+.proj-card:hover{box-shadow:0 0 28px -8px rgba(200,169,110,.34);z-index:10;transform:translateY(-3px);}
+.proj-card:hover img{transform:scale(1.04);filter:contrast(1.06) brightness(1.04);}
+.proj-card-overlay{position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(8,8,7,.88) 100%);opacity:0;transition:opacity .7s ease;}
+.proj-card:hover .proj-card-overlay{opacity:1;}
+.proj-card-info{position:absolute;bottom:0;left:0;right:0;padding:1.8rem;transform:translateY(10px);opacity:0;transition:opacity .7s ease,transform .7s cubic-bezier(.23,1,.32,1);}
+.proj-card:hover .proj-card-info{opacity:1;transform:translateY(0);}
+.proj-card-cat{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:5px;}
+.proj-card-name{font-size:1.3rem;font-weight:600;color:#fff;display:block;margin-bottom:3px;}
+.proj-card.featured .proj-card-name{font-size:1.3rem;}
+.proj-card-desc{font-family:"DM Mono",monospace;font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.08em;}
+.proj-card-tag{position:absolute;top:1rem;left:1rem;font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(12,12,11,.8);border:.5px solid rgba(200,169,110,.25);padding:4px 10px;}
+.proj-card.hidden{display:none;}
+.see-more{display:inline-flex;align-items:center;gap:8px;margin-top:3rem;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:.5px solid var(--border);padding-bottom:3px;transition:color .25s,border-color .25s;}
+.see-more:hover{color:var(--accent);border-color:var(--accent);}
+.all-projects-wrap{display:flex;justify-content:center;align-items:center;gap:1.8rem;margin-top:3.4rem;width:100%;max-width:none;margin-left:auto;margin-right:auto;padding:0 1.2rem;}.all-projects-wrap::before,.all-projects-wrap::after{content:"";display:block;height:1px;flex:1;min-width:0;background:linear-gradient(to right,transparent,rgba(200,169,110,.36));}.all-projects-wrap::after{background:linear-gradient(to left,transparent,rgba(200,169,110,.36));}@media(max-width:480px){.all-projects-wrap{gap:1rem;padding:0;}.all-projects-wrap::before,.all-projects-wrap::after{max-width:none;}}
+.all-projects-btn{position:relative;z-index:1;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--text);text-decoration:none;border:1px solid rgba(240,236,229,.35);border-radius:999px;padding:13px 28px;transition:all .3s ease;background:transparent;display:inline-flex;align-items:center;justify-content:center;}
+.all-projects-btn:hover{border-color:var(--accent);color:var(--bg);background:var(--accent);}
+.statement-section{padding:4rem 3.5rem 0;background:var(--bg2);border-top:.5px solid rgba(200,169,110,.12);text-align:center;}
+.statement-section h2{font-size:clamp(1.55rem,2.7vw,2.7rem);font-weight:400;line-height:1.28;letter-spacing:-.01em;color:var(--text);max-width:980px;margin:0 auto 3rem;text-align:center;}
+.statement-section h2 em{font-style:italic;color:var(--accent);}
+.skills-ticker{margin-top:0;padding-top:.9rem;padding-bottom:.9rem;border-top:.5px solid rgba(200,169,110,.12);border-bottom:.5px solid rgba(200,169,110,.12);overflow:hidden;height:auto;display:flex;align-items:center;}
+.skills-inner{display:flex;width:max-content;animation:ticker 50s linear infinite;align-items:center;}
+.skill-item{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 .45rem;white-space:nowrap;line-height:1;}.skill-sep{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0;color:var(--border);padding:0 .06rem;white-space:nowrap;line-height:1;}
+.skill-item b{color:var(--text2);font-weight:400;}
+.about-section{padding:5.8rem 3.5rem 8rem;background:var(--bg3);border-top:0;display:grid;grid-template-columns:1.28fr .72fr;gap:4.5rem;align-items:start;}
+.about-left h2{font-size:clamp(3.5rem,7vw,6.5rem);font-weight:700;line-height:.9;letter-spacing:-.025em;color:var(--text);}
+.about-left h2 em{display:block;font-style:italic;font-weight:300;color:var(--accent);}
+.about-badge{margin-top:2rem;display:inline-flex;align-items:center;gap:8px;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);border:.5px solid rgba(200,169,110,.3);padding:8px 16px;}
+.about-badge::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.about-bio{margin-top:2.5rem;max-width:820px;}
+.about-bio p{font-size:clamp(1.1rem,1.5vw,1.3rem);font-weight:300;line-height:1.9;color:var(--text2);margin-bottom:1.4rem;}
+.about-bio p strong{color:var(--text);font-weight:600;}
+.about-tools{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:8px;max-width:820px;}
+.tool-tag{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:.5px solid var(--border);padding:6px 14px;transition:all .2s;}
+.tool-tag:hover{color:var(--text);border-color:var(--muted);}
+.about-right{border-top:.5px solid var(--border);}
+.about-redes-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding:.9rem 0;border-bottom:.5px solid var(--border);display:block;}
+.about-redes-link{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;border-bottom:.5px solid var(--border);text-decoration:none;position:relative;overflow:hidden;transition:all .3s;cursor:none;}
+.about-redes-link::before{content:"";position:absolute;inset:0;background:rgba(200,169,110,.05);transform:translateX(-100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94);}
+.about-redes-link:hover::before{transform:translateX(0);}
+.about-redes-name{font-size:clamp(1.2rem,2vw,1.6rem);font-weight:600;color:var(--text);letter-spacing:-.01em;transition:color .3s,transform .3s;}
+.about-redes-link:hover .about-redes-name{color:var(--accent);transform:translateX(10px);font-style:italic;}
+.about-redes-meta{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;transition:color .3s;}
+.about-redes-link:hover .about-redes-meta{color:var(--accent);}
+.about-redes-arrow{color:var(--muted);opacity:0;transform:translateX(-6px);transition:all .3s;}
+.about-redes-link:hover .about-redes-arrow{opacity:1;transform:translateX(0);color:var(--accent);}
+.contact-section{background:var(--bg);border-top:.5px solid rgba(200,169,110,.12);min-height:auto;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;transition:background .9s cubic-bezier(.76,0,.24,1);}
+.contact-section.hovered{background:radial-gradient(ellipse at 50% 60%,#3a2800 0%,#1a1100 40%,#0c0c0b 100%);}
+.contact-inner{padding:4.2rem 3.5rem 3.6rem;display:flex;flex-direction:column;align-items:center;gap:1.05rem;position:relative;z-index:1;width:100%;}
+.contact-eyebrow{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:.2rem;}
+.contact-headline{font-size:clamp(3rem,7.2vw,7rem);font-weight:700;line-height:.9;letter-spacing:-.03em;color:var(--text);}
+.contact-headline em{font-style:italic;font-weight:300;color:var(--accent);}
+.contact-sub{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);max-width:560px;line-height:1.75;}
+.lets-talk-wrap{position:relative;display:inline-block;margin-top:.8rem;cursor:none;}
+.lets-talk-canvas,.orbit-canvas{position:absolute;top:-24px;left:-24px;pointer-events:none;z-index:2;}.orbit-btn-wrap{position:relative;display:inline-block;cursor:none;}.all-projects-orbit .orbit-canvas{top:-12px;left:-12px;}
+.lets-talk-btn{position:relative;z-index:1;display:inline-flex;align-items:center;gap:16px;padding:22px 56px;background:transparent;border:1px solid rgba(200,169,110,.12);border-radius:50px;color:var(--text);text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:600;letter-spacing:-.01em;cursor:none;transition:background .5s cubic-bezier(.76,0,.24,1),color .4s,border-color .4s;}
+.lets-talk-btn:hover{background:var(--accent);color:var(--bg);border-color:var(--accent);}
+.lets-talk-arrow{transition:transform .35s cubic-bezier(.25,.46,.45,.94);display:inline-block;}
+.lets-talk-btn:hover .lets-talk-arrow{transform:translateX(8px);}
+.contact-socials{display:flex;align-items:center;gap:1.2rem;margin-top:.8rem;flex-wrap:wrap;justify-content:center;}
+.contact-socials a{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s;}
+.contact-socials a:hover{color:var(--accent);}
+.contact-socials span{color:var(--border);}
+footer{padding:2rem 3.5rem;border-top:.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--bg);gap:1rem;}
+footer span{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1.05s cubic-bezier(.25,.46,.45,.94),transform 1.05s cubic-bezier(.25,.46,.45,.94);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.07s;}.d2{transition-delay:.15s;}.d3{transition-delay:.23s;}
+.d4{transition-delay:.31s;}.d5{transition-delay:.4s;}.d6{transition-delay:.5s;}
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(8,8,7,0);pointer-events:none;overflow-y:auto;}
+.modal-overlay.open{background:rgba(8,8,7,.97);pointer-events:all;}
+.modal-close{position:fixed;top:2rem;right:3rem;z-index:600;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:transparent;border:.5px solid var(--border);padding:9px 18px;cursor:none;transition:all .25s;opacity:0;pointer-events:none;}
+.modal-overlay.open .modal-close{opacity:1;pointer-events:all;}
+.modal-close:hover{color:var(--text);border-color:var(--muted);}
+.modal{width:100%;max-width:900px;margin:0 auto;padding:8rem 2rem 6rem;opacity:0;transform:translateY(40px);transition:opacity .5s,transform .5s;pointer-events:none;}
+.modal-overlay.open .modal{opacity:1;transform:translateY(0);pointer-events:all;}
+.modal-cat{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:1rem;}
+.modal-title{font-size:clamp(3rem,7vw,5.5rem);font-weight:700;line-height:.92;letter-spacing:-.025em;color:var(--text);margin-bottom:.7rem;}
+.modal-title em{font-style:italic;font-weight:300;color:var(--accent);}
+.modal-client{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:2rem;}
+.modal-meta{display:flex;gap:3.5rem;padding:1.5rem 0;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);margin-bottom:2.5rem;flex-wrap:wrap;}
+.modal-meta-label{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:5px;}
+.modal-meta-val{font-size:1.05rem;color:var(--text);}
+.modal-desc{font-size:1.2rem;line-height:1.85;color:var(--text2);margin-bottom:3rem;max-width:720px;font-weight:300;}
+.modal-desc strong{color:var(--text);font-weight:600;}
+.modal-images{display:flex;flex-direction:column;gap:4px;margin-bottom:3rem;}
+.modal-images img{width:100%;display:block;height:auto;}
+.modal-video-wrap{position:relative;width:100%;aspect-ratio:16/9;margin-bottom:3rem;background:#000;}
+.modal-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.modal-tools{display:flex;flex-wrap:wrap;gap:8px;padding-top:2rem;border-top:.5px solid var(--border);}
+.modal-tool{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:.5px solid var(--border);padding:5px 14px;}
+.modal-blink{display:inline-flex;gap:6px;margin-top:2rem;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:.5px solid var(--border);padding-bottom:3px;transition:color .25s,border-color .25s;}
+.modal-blink:hover{color:var(--accent);border-color:var(--accent);}
+.modal-nav{display:flex;justify-content:space-between;align-items:center;margin-top:5rem;padding-top:2rem;border-top:.5px solid var(--border);gap:1rem;}
+.modal-nav-btn{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);background:transparent;border:none;cursor:none;transition:color .25s;padding:0;}
+.modal-nav-btn:hover{color:var(--text);}
+.modal-nav-btn:disabled{opacity:.15;pointer-events:none;}
+@media(max-width:1024px){
+  nav{padding:1.2rem 2.25rem;}
+  .hero,.projects-section,.statement-section,.about-section,.contact-section,section{padding-left:2.25rem;padding-right:2.25rem;}
+  .projects-grid{grid-template-columns:1fr 1fr;max-width:1400px;}
+  .proj-card.featured{grid-column:auto;}
+  .about-section{gap:4rem;}
+  .contact-inner{padding-left:2.25rem;padding-right:2.25rem;}
+  footer{padding-left:2.25rem;padding-right:2.25rem;}
+}
+@media(max-width:768px){
+  body{cursor:auto;}
+  #cd,#cr{display:none;}
+  a,button,.proj-card,.filter-btn,.tool-tag{cursor:pointer;}
+  nav{padding:1rem 1.5rem;gap:1rem;align-items:flex-start;}
+  .nav-logo img{width:46px;}
+  .nav-links{gap:.9rem;flex-wrap:wrap;justify-content:flex-end;}
+  .nav-links a,.lang-btn{font-size:10px;}
+  .hero{min-height:100svh;padding:0 1.5rem 3rem;}
+  .hero-label{font-size:10px;letter-spacing:.18em;margin-bottom:1.2rem;max-width:320px;}
+  .hero h1{font-size:clamp(2.35rem,8.5vw,3.8rem);line-height:1.02;}
+  .hero-sub{font-size:1.18rem;line-height:1.68;max-width:100%;margin-top:1.4rem;}
+  .hero-ctas{flex-direction:column;align-items:flex-start;gap:1rem;margin-top:2rem;}
+  .hero-scroll{right:1.5rem;bottom:1.5rem;}
+  .projects-section,section,.about-section,.contact-section{padding:5.5rem 1.5rem;}.projects-section{padding-bottom:3.4rem;}.statement-section{padding:3.4rem 1.5rem 0;}
+  .projects-grid{grid-template-columns:1fr;gap:6px;max-width:640px;}
+  .proj-card.featured{grid-column:auto;}
+  .proj-card.featured img{aspect-ratio:16/7;}
+  .proj-card-info{opacity:1;transform:translateY(0);}
+  .proj-card-overlay{opacity:1;background:linear-gradient(transparent 45%,rgba(8,8,7,.88) 100%);}
+  .statement-section h2{font-size:clamp(1.55rem,6vw,2.3rem);line-height:1.25;margin-bottom:2.4rem;}
+  .about-section{grid-template-columns:1fr;gap:3rem;}
+  .about-left h2{font-size:clamp(3rem,12vw,4.8rem);}
+  .about-bio p{font-size:1.05rem;line-height:1.8;}
+  .contact-inner{padding:4rem 1.5rem 3.6rem;}
+  .contact-headline{font-size:clamp(2.4rem,10vw,4.3rem);line-height:.94;}
+  .contact-sub{max-width:100%;font-size:10px;line-height:1.8;}
+  .lets-talk-btn{padding:18px 34px;font-size:clamp(1.7rem,8vw,2.6rem);}
+  .contact-socials{gap:.9rem;}
+  .modal{padding:7rem 1.5rem 4rem;}
+  .modal-close{top:1.25rem;right:1.5rem;}
+  .modal-nav{flex-direction:column;align-items:flex-start;}
+  footer{padding:1.5rem;flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:480px){
+  nav{padding:.9rem 1rem;}
+  .nav-logo img{width:50px;}
+  .nav-links{gap:.65rem;}
+  .hero{padding:0 1rem 2.4rem;}
+  .hero-label{font-size:9px;letter-spacing:.14em;max-width:260px;}
+  .hero h1{font-size:clamp(2rem,9vw,2.8rem);}
+  .hero-sub{font-size:1.08rem;line-height:1.65;}
+  .btn-main,.btn-ghost{font-size:10px;}
+  .hero-scroll{display:none;}
+  .projects-section,section,.about-section,.contact-section{padding:4.5rem 1rem;}.projects-section{padding-bottom:3rem;}.statement-section{padding:3rem 1rem 0;}
+  .filters{gap:.4rem;}
+  .filter-btn{font-size:9px;padding:7px 12px;}
+  .proj-card-tag{top:.75rem;left:.75rem;}
+  .proj-card-info{padding:1.2rem;}
+  .sec-title{margin-bottom:2.5rem;}
+  .statement-section h2{font-size:1.45rem;margin-bottom:2.2rem;}
+  .about-badge{font-size:9px;padding:7px 12px;}
+  .about-redes-link{padding:1rem 0;}
+  .about-redes-name{font-size:1.1rem;}
+  .contact-inner{padding:3.6rem 1rem 3.2rem;}
+  .contact-headline{font-size:clamp(2.2rem,11vw,3.2rem);}
+  .lets-talk-btn{padding:16px 28px;font-size:1.8rem;}
+  .contact-socials{gap:.7rem;}
+  .contact-socials a{font-size:9px;}
+  .modal{padding:6rem 1rem 3rem;}
+  .modal-title{font-size:clamp(2.2rem,12vw,3.4rem);}
+  .modal-desc{font-size:1.05rem;line-height:1.75;}
+  .modal-meta{gap:1.5rem;}
+  .modal-close{right:1rem;}
+  footer{padding:1.25rem 1rem;}
+  footer span{font-size:9px;}
+}
+</style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <img src="img/230.png" alt="Angel Charr" class="loader-logo">
-        <div class="loader-text">
-            <span class="loader-letter">A</span>
-            <span class="loader-letter">n</span>
-            <span class="loader-letter">g</span>
-            <span class="loader-letter">e</span>
-            <span class="loader-letter">l</span>
-            <span class="loader-letter">&nbsp;</span>
-            <span class="loader-letter">C</span>
-            <span class="loader-letter">h</span>
-            <span class="loader-letter">a</span>
-            <span class="loader-letter">r</span>
-            <span class="loader-letter">r</span>
-        </div>
-        <div class="loader-bar">
-            <div class="loader-bar-fill"></div>
-        </div>
+<div id="curtain"><div id="ci"></div></div>
+<div id="cd"></div><div id="cr"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo"><img src="https://res.cloudinary.com/dxpap6uiq/image/upload/v1775855727/angelcharr_logo_xchyym.png" alt="Angel Charr"></a>
+  <div class="nav-links">
+    <a href="#proyectos" data-es="Trabajo" data-en="Work">Trabajo</a>
+    <a href="#sobre" data-es="Sobre mí" data-en="About">Sobre mí</a>
+    <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+    <button class="lang-btn" id="langBtn">EN</button>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <video class="hero-video" id="heroVid" autoplay muted loop playsinline>
+    <source src="https://res.cloudinary.com/dxpap6uiq/video/upload/v1774470677/BUENA_VIDA_BEACH_FESTIVAL_2023.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" id="heroContent">
+    <div class="hero-label" id="heroLabel">Diseñador gráfico, director visual y realizador audiovisual — Bogotá, Colombia</div>
+    <h1 id="heroTitle">Diseño visual para marcas<br>que quieren ser recordadas.</h1>
+    <p class="hero-sub" id="heroSub">Trabajo con marcas gastronómicas, hoteleras, culturales y corporativas que buscan una identidad sólida, sensible y con intención.</p>
+    <div class="hero-ctas" id="heroCtas">
+      <a href="#proyectos" class="btn-main" data-es="Ver trabajo" data-en="See work">Ver trabajo</a>
+      <a href="https://www.behance.net/gallery/53366009/CV-ANGEL-CHARR" target="_blank" class="btn-ghost" data-es="Ver credenciales →" data-en="View credentials →">Ver credenciales →</a>
     </div>
+  </div>
+  <div class="hero-scroll" id="heroScroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <a href="#hero" class="nav-logo"><img src="img/230.png" alt="Angel Charr"></a>
-        <div class="nav-links">
-            <a href="#projects" class="nav-link" data-text="Proyectos">Proyectos</a>
-            <a href="#about" class="nav-link" data-text="Sobre mí">Sobre mí</a>
-            <a href="#contact" class="nav-link" data-text="Contacto">Contacto</a>
-        </div>
-        <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </nav>
+<div class="ticker-wrap"><div class="ticker-track" id="tickerTrack"></div></div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <a href="#projects" class="mobile-link">Proyectos</a>
-        <a href="#about" class="mobile-link">Sobre mí</a>
-        <a href="#contact" class="mobile-link">Contacto</a>
+<section class="projects-section" id="proyectos">
+  <div class="sec-eyebrow reveal" data-es="Portafolio seleccionado" data-en="Selected work">Portafolio seleccionado</div>
+  <h2 class="sec-title reveal" id="projTitle">Proyectos <em>Seleccionados</em></h2>
+  <div class="projects-grid showcase-grid" id="projGrid">
+    <div class="proj-card reveal d1" data-cat="branding" data-index="0"><div class="img-wrap"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1eac63244808595.69d7ef78ddd91.png" alt="Don Ignazio"></div><span class="proj-card-tag">Branding</span><div class="proj-card-overlay"></div><div class="proj-card-info"><div class="proj-card-cat">Faranda Hotels &amp; Resorts · 2026</div><span class="proj-card-name">Don Ignazio</span><div class="proj-card-desc">Editorial design · Photography · Restaurant identity</div></div></div>
+
+    <div class="proj-card reveal d2" data-cat="branding" data-index="1"><div class="img-wrap"><img src="https://res.cloudinary.com/dxpap6uiq/image/upload/f_auto,q_auto,w_800/v1775855769/NUNA._CARATULA_jc9hym.png" alt="Nuna"></div><span class="proj-card-tag">Branding</span><div class="proj-card-overlay"></div><div class="proj-card-info"><div class="proj-card-cat">Faranda Collection · 2025</div><span class="proj-card-name">Nuna</span><div class="proj-card-desc">Restaurant identity · Organic visual system</div></div></div>
+
+    <div class="proj-card reveal d3" data-cat="social" data-index="8"><div class="img-wrap"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/a5389a63779015.670991a501b77.png" alt="Voces del Jazz"></div><span class="proj-card-tag">Campaign</span><div class="proj-card-overlay"></div><div class="proj-card-info"><div class="proj-card-cat">Festival · 2024</div><span class="proj-card-name">Voces del Jazz</span><div class="proj-card-desc">Cultural campaign · Music identity</div></div></div>
+
+    <div class="proj-card reveal d4" data-cat="social" data-index="9"><div class="img-wrap"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/ebd60263779015.670991a4f4144.png" alt="Eclipse"></div><span class="proj-card-tag">Campaign</span><div class="proj-card-overlay"></div><div class="proj-card-info"><div class="proj-card-cat">AB InBev · 2023</div><span class="proj-card-name">Eclipse</span><div class="proj-card-desc">Campaign identity · Visual concept</div></div></div>
+
+    <div class="proj-card reveal d5" data-cat="social" data-index="10"><div class="img-wrap"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/d1158763779015.670991a5012e4.png" alt="Maando"></div><span class="proj-card-tag">Campaign</span><div class="proj-card-overlay"></div><div class="proj-card-info"><div class="proj-card-cat">Maando · 2023</div><span class="proj-card-name">Maando</span><div class="proj-card-desc">Digital content · Social system</div></div></div>
+
+    <div class="proj-card reveal d6" data-cat="social" data-index="11"><div class="img-wrap"><img src="https://mir-cdn.behance.net/v1/rendition/project_modules/fs_webp/26218b63779015.67099287781ae.png" alt="BVB"></div><span class="proj-card-tag">Campaign</span><div class="proj-card-overlay"></div><div class="proj-card-info"><div class="proj-card-cat">Festival · 2023</div><span class="proj-card-name">BVB</span><div class="proj-card-desc">Festival campaign · Social content</div></div></div>
+  </div>
+
+  <div class="all-projects-wrap reveal">
+    <div class="orbit-btn-wrap all-projects-orbit">
+      <canvas class="orbit-canvas" id="allProjectsOrbitCanvas"></canvas>
+      <a href="projects.html" class="all-projects-btn" id="allProjectsBtn">All Projects</a>
     </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="img/YTDown.com_YouTube_BUENA-VIDA-BEACH-FESTIVAL-2023-DAY-1-REC_Media_rjM7Qgtrbzw_001_1080p.mp4" type="video/mp4">
-        </video>
-        <div class="hero-video-overlay"></div>
-        <div class="hero-bg-gradient"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <div class="hero-subtitle reveal-text">
-                    <span>Diseñador Gráfico & Creativo</span>
-                </div>
-                <h1 class="hero-title">
-                    <div class="title-line reveal-text"><span>Angel</span></div>
-                    <div class="title-line reveal-text"><span>Charr</span></div>
-                </h1>
-                <p class="hero-description reveal-text">
-                    <span>Transformando ideas en experiencias visuales memorables</span>
-                </p>
-                <a href="#projects" class="hero-cta reveal-text">
-                    <span>Ver mi trabajo</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="hero-photo reveal-text">
-                <span><img src="img/ChatGPT Image 27 feb 2026, 02_57_22 p.m..png" alt="Angel Charr"></span>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-line"></div>
-            <span>Scroll</span>
-        </div>
-    </section>
+<section class="statement-section reveal" id="portafolio">
+  <h2 id="stmtText">Ocho años construyendo marcas e historias visuales <em>arraigadas en Colombia,</em> con la mirada puesta en el mundo. Trabajo con marcas gastronómicas, hoteleras, musicales y corporativas que buscan ser recordadas por lo que son, no solo por lo que hacen.</h2>
+  <div class="skills-ticker"><div class="skills-inner" id="skillsInner"></div></div>
+</section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="section-header">
-            <span class="section-label reveal-text"><span>Portafolio</span></span>
-            <h2 class="section-title reveal-text"><span>Proyectos Seleccionados</span></h2>
-        </div>
-
-        <div class="project-filters reveal-text">
-            <span>
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="branding">Branding</button>
-                <button class="filter-btn" data-filter="uiux">UI/UX</button>
-                <button class="filter-btn" data-filter="ilustracion">Ilustración</button>
-                <button class="filter-btn" data-filter="editorial">Editorial</button>
-            </span>
-        </div>
-
-        <div class="projects-grid" id="projects-grid">
-            <div class="project-card" data-category="branding" data-index="0">
-                <div class="project-image">
-                    <img src="img/Foto13.png" alt="Empaque de Café | Hotel Caribe">
-                    <div class="project-overlay">
-                        <span class="project-category">Branding</span>
-                        <h3 class="project-title">Empaque de Café</h3>
-                        <p class="project-desc">Diseño de packaging para Hotel Caribe</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="editorial" data-index="1">
-                <div class="project-image">
-                    <img src="img/Foto10.png" alt="Menú Restaurante">
-                    <div class="project-overlay">
-                        <span class="project-category">Editorial</span>
-                        <h3 class="project-title">Menú Restaurante</h3>
-                        <p class="project-desc">Diseño de menú para restaurante</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="ilustracion" data-index="2">
-                <div class="project-image">
-                    <img src="img/Foto14.png" alt="Barcelona vs Real Madrid">
-                    <div class="project-overlay">
-                        <span class="project-category">Ilustración</span>
-                        <h3 class="project-title">Barcelona vs Real Madrid</h3>
-                        <p class="project-desc">Ilustración deportiva digital</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="branding" data-index="3">
-                <div class="project-image">
-                    <img src="img/Foto1.jpg" alt="Stand Modular | The Club">
-                    <div class="project-overlay">
-                        <span class="project-category">Branding</span>
-                        <h3 class="project-title">Stand Modular</h3>
-                        <p class="project-desc">Diseño de stand 3x3 para The Club</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="editorial" data-index="4">
-                <div class="project-image">
-                    <img src="img/Foto2.jpg" alt="Postal de Bienvenida">
-                    <div class="project-overlay">
-                        <span class="project-category">Editorial</span>
-                        <h3 class="project-title">Postal de Bienvenida</h3>
-                        <p class="project-desc">Diseño de postal para hotel</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="uiux" data-index="5">
-                <div class="project-image">
-                    <img src="img/Foto4.jpg" alt="Menú Digital | Alma">
-                    <div class="project-overlay">
-                        <span class="project-category">UI/UX</span>
-                        <h3 class="project-title">Menú Digital</h3>
-                        <p class="project-desc">Diseño de menú digital para Alma</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="branding" data-index="6">
-                <div class="project-image">
-                    <img src="img/Foto7.jpg" alt="Todo Incluido | Hotel Caribe">
-                    <div class="project-overlay">
-                        <span class="project-category">Branding</span>
-                        <h3 class="project-title">Todo Incluido</h3>
-                        <p class="project-desc">Campaña para Hotel Caribe</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="uiux" data-index="7">
-                <div class="project-image">
-                    <img src="img/Foto3.jpg" alt="San Valentín | Hotel Caribe">
-                    <div class="project-overlay">
-                        <span class="project-category">UI/UX</span>
-                        <h3 class="project-title">San Valentín</h3>
-                        <p class="project-desc">Campaña digital Hotel Caribe</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="branding" data-index="8">
-                <div class="project-image">
-                    <img src="img/Foto6.jpg" alt="Roll Up | The Club">
-                    <div class="project-overlay">
-                        <span class="project-category">Branding</span>
-                        <h3 class="project-title">Roll Up | The Club</h3>
-                        <p class="project-desc">Diseño de roll up publicitario</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="projects-behance reveal-text">
-            <span>
-                <a href="https://www.behance.net/angelcharr" target="_blank" rel="noopener" class="behance-btn">
-                    Ver más en Behance
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </a>
-            </span>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-content">
-            <div class="about-left">
-                <span class="section-label reveal-text"><span>Sobre mí</span></span>
-                <h2 class="section-title reveal-text"><span>Creando con propósito</span></h2>
-                <div class="about-text">
-                    <p class="reveal-text"><span>Soy Angel Charr, diseñador gráfico apasionado por crear experiencias visuales que conectan marcas con personas. Mi enfoque combina estética, estrategia y funcionalidad.</span></p>
-                    <p class="reveal-text"><span>Cada proyecto es una oportunidad para contar una historia única a través del diseño, cuidando cada detalle desde la conceptualización hasta la ejecución final.</span></p>
-                </div>
-            </div>
-            <div class="about-right">
-                <div class="skills-grid">
-                    <div class="skill-item reveal-text">
-                        <span>
-                            <div class="skill-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
-                                    <path d="M2 17L12 22L22 17"/>
-                                    <path d="M2 12L12 17L22 12"/>
-                                </svg>
-                            </div>
-                            <h4>Branding</h4>
-                            <p>Identidad visual y sistemas de marca</p>
-                        </span>
-                    </div>
-                    <div class="skill-item reveal-text">
-                        <span>
-                            <div class="skill-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
-                                    <path d="M8 21H16"/>
-                                    <path d="M12 17V21"/>
-                                </svg>
-                            </div>
-                            <h4>UI/UX Design</h4>
-                            <p>Interfaces intuitivas y atractivas</p>
-                        </span>
-                    </div>
-                    <div class="skill-item reveal-text">
-                        <span>
-                            <div class="skill-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M12 19L19 12L22 15L15 22L12 19Z"/>
-                                    <path d="M18 13L16.5 5.5L2 2L5.5 16.5L13 18L18 13Z"/>
-                                    <circle cx="10" cy="10" r="2"/>
-                                </svg>
-                            </div>
-                            <h4>Ilustración</h4>
-                            <p>Arte digital y vectorial</p>
-                        </span>
-                    </div>
-                    <div class="skill-item reveal-text">
-                        <span>
-                            <div class="skill-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
-                                    <path d="M6.5 2H20V22H6.5A2.5 2.5 0 014 19.5V4.5A2.5 2.5 0 016.5 2Z"/>
-                                </svg>
-                            </div>
-                            <h4>Editorial</h4>
-                            <p>Diseño de publicaciones y revistas</p>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="tools reveal-text">
-                    <span>
-                        <h4 class="tools-title">Herramientas</h4>
-                        <div class="tools-list">
-                            <span class="tool-tag">Photoshop</span>
-                            <span class="tool-tag">Illustrator</span>
-                            <span class="tool-tag">Figma</span>
-                            <span class="tool-tag">After Effects</span>
-                            <span class="tool-tag">InDesign</span>
-                            <span class="tool-tag">Procreate</span>
-                        </div>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-content">
-            <span class="section-label reveal-text"><span>Contacto</span></span>
-            <h2 class="contact-title reveal-text"><span>Trabajemos juntos</span></h2>
-            <p class="contact-subtitle reveal-text"><span>¿Tienes un proyecto en mente? Me encantaría escucharte.</span></p>
-
-            <div class="contact-links">
-                <a href="mailto:hola@angelcharr.com" class="contact-link reveal-text">
-                    <span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="2" y="4" width="20" height="16" rx="2"/>
-                            <path d="M22 4L12 13L2 4"/>
-                        </svg>
-                        hola@angelcharr.com
-                    </span>
-                </a>
-                <a href="https://www.behance.net/angelcharr" target="_blank" rel="noopener" class="contact-link reveal-text">
-                    <span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
-                        </svg>
-                        Behance
-                    </span>
-                </a>
-            </div>
-
-            <div class="contact-cta reveal-text">
-                <span>
-                    <a href="mailto:hola@angelcharr.com" class="cta-button">
-                        Iniciar un proyecto
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                        </svg>
-                    </a>
-                </span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <span class="footer-logo">Angel Charr</span>
-            <span class="footer-year">&copy; 2026</span>
-        </div>
-    </footer>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 6L6 18M6 6L18 18"/>
-            </svg>
-        </button>
-        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Anterior">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M15 18L9 12L15 6"/>
-            </svg>
-        </button>
-        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Siguiente">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 6L15 12L9 18"/>
-            </svg>
-        </button>
-        <div class="lightbox-content" id="lightbox-content">
-            <img class="lightbox-img" id="lightbox-img" src="" alt="">
-            <div class="lightbox-info">
-                <span class="lightbox-category" id="lightbox-category"></span>
-                <h3 class="lightbox-title" id="lightbox-title"></h3>
-                <p class="lightbox-desc" id="lightbox-desc"></p>
-                <span class="lightbox-counter" id="lightbox-counter"></span>
-            </div>
-        </div>
+<section class="about-section reveal" id="sobre">
+  <div class="about-left">
+    <h2>Ángel<br><em>Charr.</em></h2>
+    <div class="about-badge" data-es="Disponible para proyectos seleccionados" data-en="Available for selected projects">Disponible para proyectos seleccionados</div>
+    <div class="about-bio" id="aboutText">
+      <p>Soy diseñador gráfico, director visual y realizador audiovisual. Mi trabajo se mueve entre la identidad de marca, la fotografía y la construcción de universos visuales con intención.</p>
+      <p>He desarrollado proyectos para marcas del sector hotelero, gastronómico, cultural y corporativo, construyendo sistemas visuales que buscan equilibrio entre sensibilidad, claridad y carácter.</p>
+      <p>Más que diseñar piezas, me interesa construir presencias: marcas que se sientan coherentes, memorables y honestas en cada punto de contacto.</p>
+      <p><strong>Diseño para que una marca no solo se vea bien, sino que se sienta verdadera.</strong></p>
     </div>
+    <div class="about-tools">
+      <span class="tool-tag">Branding</span><span class="tool-tag">Dirección visual</span><span class="tool-tag">Editorial</span>
+      <span class="tool-tag">Fotografía</span><span class="tool-tag">Audiovisual</span><span class="tool-tag">Campañas</span>
+      <span class="tool-tag">Hospitality</span><span class="tool-tag">Contenido digital</span>
+    </div>
+  </div>
+  <div class="about-right">
+    <span class="about-redes-label" data-es="Presencia digital" data-en="Digital presence">Presencia digital</span>
+    <a href="https://www.instagram.com/angelcharr/" target="_blank" class="about-redes-link"><span class="about-redes-name">Instagram</span><span class="about-redes-meta">@angelcharr</span><span class="about-redes-arrow">&#8594;</span></a>
+    <a href="https://www.behance.net/angelcharr" target="_blank" class="about-redes-link"><span class="about-redes-name">Behance</span><span class="about-redes-meta">Portafolio</span><span class="about-redes-arrow">&#8594;</span></a>
+    <a href="https://vimeo.com/angelcharr22" target="_blank" class="about-redes-link"><span class="about-redes-name">Vimeo</span><span class="about-redes-meta">Audiovisual</span><span class="about-redes-arrow">&#8594;</span></a>
+    <a href="https://twitter.com/angelcharr" target="_blank" class="about-redes-link"><span class="about-redes-name">Twitter / X</span><span class="about-redes-meta">@angelcharr</span><span class="about-redes-arrow">&#8594;</span></a>
+    <a href="https://co.pinterest.com/angelcharr" target="_blank" class="about-redes-link"><span class="about-redes-name">Pinterest</span><span class="about-redes-meta">@angelcharr</span><span class="about-redes-arrow">&#8594;</span></a>
+    <a href="mailto:angelchavezarroyo@gmail.com" class="about-redes-link"><span class="about-redes-name">Email</span><span class="about-redes-meta">angelchavezarroyo@gmail.com</span><span class="about-redes-arrow">&#8594;</span></a>
+  </div>
+</section>
 
-    <script src="js/main.js"></script>
-    <script src="js/gallery.js"></script>
+<section class="contact-section" id="contacto">
+  <div class="contact-inner reveal">
+    <p class="contact-eyebrow">¿Listo para empezar?</p>
+    <h2 class="contact-headline" id="contactTitle">¿Tienes un proyecto<br>en <em>mente?</em></h2>
+    <p class="contact-sub" id="contactSub">Si tu marca necesita una identidad más clara, una presencia más sólida o una mirada visual con intención, conversemos.</p>
+    <div class="lets-talk-wrap" id="letsTalkWrap">
+      <canvas class="lets-talk-canvas" id="orbitCanvas"></canvas>
+      <a href="mailto:angelchavezarroyo@gmail.com" class="lets-talk-btn" id="letsTalkBtn">
+        <span class="lets-talk-text">Hablemos</span>
+        <span class="lets-talk-arrow">&#8594;</span>
+      </a>
+    </div>
+    <div class="contact-socials">
+      <a href="https://www.instagram.com/angelcharr/" target="_blank">Instagram</a><span>&#183;</span>
+      <a href="https://www.behance.net/angelcharr" target="_blank">Behance</a><span>&#183;</span>
+      <a href="https://vimeo.com/angelcharr22" target="_blank">Vimeo</a><span>&#183;</span>
+      <a href="https://twitter.com/angelcharr" target="_blank">Twitter / X</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Ángel Charr © 2026</span>
+  <span id="footerRight">Diseñador Gráfico & Realizador Audiovisual</span>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <button class="modal-close" id="modalClose">← Volver</button>
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+// CURSOR
+var cd=document.getElementById("cd"),cr=document.getElementById("cr"),mx=0,my=0,rx=0,ry=0;
+document.addEventListener("mousemove",function(e){mx=e.clientX;my=e.clientY;cd.style.left=mx+"px";cd.style.top=my+"px";});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cr.style.left=rx+"px";cr.style.top=ry+"px";requestAnimationFrame(loop);})();
+document.querySelectorAll("a,button,input,textarea,.proj-card,.filter-btn,.tool-tag").forEach(function(el){
+  el.addEventListener("mouseenter",function(){cr.style.width="44px";cr.style.height="44px";cr.style.borderColor="rgba(200,169,110,.72)";});
+  el.addEventListener("mouseleave",function(){cr.style.width="32px";cr.style.height="32px";cr.style.borderColor="rgba(200,169,110,.32)";});
+});
+// CURTAIN
+var curtain=document.getElementById("curtain");
+function coverCurtain(cb){curtain.style.pointerEvents="all";curtain.classList.remove("out");curtain.classList.add("cover");setTimeout(cb,680);}
+function revealCurtain(){curtain.classList.remove("cover");curtain.classList.add("out");setTimeout(function(){curtain.style.pointerEvents="none";},850);}
+// LOAD
+window.addEventListener("load",function(){
+  curtain.style.pointerEvents="none";curtain.classList.add("out");
+  setTimeout(function(){
+    if(heroVid){heroVid.style.opacity=.46;}
+    document.getElementById("heroLabel").classList.add("in");splitText();
+    setTimeout(function(){document.getElementById("heroSub").classList.add("in");document.getElementById("heroCtas").classList.add("in");document.getElementById("heroScroll").classList.add("in");},700);
+  },900);
+});
+// SPLIT TEXT
+function splitText(){
+  var h1=document.getElementById("heroTitle");if(!h1)return;
+  var nodes=Array.from(h1.childNodes),out="",delay=0;
+  nodes.forEach(function(n){
+    if(n.nodeType===3){n.textContent.split("").forEach(function(c){if(c===" ")out+=" ";else{out+='<span class="ch" style="transition-delay:'+delay+'ms">'+c+"</span>";delay+=28;}});}
+    else if(n.nodeName==="BR"){out+="<br>";}
+    else if(n.nodeName==="EM"){out+="<em>";n.textContent.split("").forEach(function(c){if(c===" ")out+=" ";else{out+='<span class="ch" style="transition-delay:'+delay+'ms">'+c+"</span>";delay+=28;}});out+="</em>";}
+  });
+  h1.innerHTML=out;
+  requestAnimationFrame(function(){requestAnimationFrame(function(){document.querySelectorAll("#heroTitle .ch").forEach(function(c){c.classList.add("in");});});});
+}
+// PARALLAX
+var heroVid=document.getElementById("heroVid"),heroContent=document.getElementById("heroContent"),heroScrollEl=document.getElementById("heroScroll"),raf=false;
+window.addEventListener("scroll",function(){
+  if(raf)return;raf=true;
+  requestAnimationFrame(function(){var sy=window.scrollY;if(heroVid){heroVid.style.transform="translateY("+(sy*.38)+"px)";heroVid.style.opacity=Math.max(.34,.46-sy/1800);}if(heroContent)heroContent.style.transform="translateY("+(sy*.1)+"px)";if(heroScrollEl)heroScrollEl.style.opacity=Math.max(0,1-sy/220);raf=false;});
+});
+// TICKERS
+var tickerItems=["Instagram","Behance","Vimeo","Twitter / X","Diseño Gráfico","Realización Audiovisual","Cartagena — Bogotá","Branding","Fotografía","Cine","Dirección Visual","Editorial","Social & Campaigns"];
+var track=document.getElementById("tickerTrack"),tickerHTML="";
+for(var t=0;t<3;t++){tickerItems.forEach(function(i){tickerHTML+='<span class="ticker-item">'+i+'</span><span class="ticker-item ticker-sep">·</span>';});}
+track.innerHTML=tickerHTML;
+var skillItems=["Identidad de marca","Dirección visual","Diseño editorial","Fotografía","Realización audiovisual","Branding hotelero","Packaging","Campañas digitales","Contenido social","Consultoría visual","Hospitality","Cultura & música"];
+var si=document.getElementById("skillsInner"),sHTML="";
+for(var s=0;s<3;s++){skillItems.forEach(function(sk){sHTML+='<span class="skill-item"><b>'+sk+'</b></span><span class="skill-sep">·</span>';});}
+si.innerHTML=sHTML;
+// REVEAL
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add("visible");});},{threshold:.07});
+document.querySelectorAll(".reveal").forEach(function(el){obs.observe(el);});
+// SMOOTH SCROLL
+document.querySelectorAll("a[href^='#']").forEach(function(a){a.addEventListener("click",function(e){var t=document.querySelector(a.getAttribute("href"));if(t){e.preventDefault();t.scrollIntoView({behavior:"smooth"});}});});
+// FILTERS
+function filterP(btn,filter){
+  document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active");});
+  btn.classList.add("active");
+  document.querySelectorAll(".proj-card").forEach(function(c){c.classList.toggle("hidden",filter!=="all"&&c.dataset.cat!==filter);});
+}
+document.querySelectorAll(".filter-btn").forEach(function(btn){btn.addEventListener("click",function(){filterP(this,this.dataset.filter);});});
+// PROJECTS DATA
+var PROJECTS=[
+  {title:"Don Ignazio",titleHtml:"Don <em>Ignazio</em>",client:"Faranda Hotels & Resorts",year:"2026",cat:"Branding",tools:["Editorial","Photography","Restaurant Identity"],behance:"https://www.behance.net/gallery/244808595/DON-IGNAZIO-Faranda-Hotels-Resorts",type:"images",desc:"Don Ignazio is a contemporary Italian restaurant conceived to deliver a refined and understated dining experience. The project involved the editorial design of the main menu and wine list as key pieces of its visual identity, alongside the restaurant’s photographic production.<br><br>The visual language was developed to feel elegant, sober and timeless, allowing typography, composition and materiality to communicate the brand with subtlety.<br><br>The result is a cohesive editorial system that strengthens the restaurant’s identity and elevates every touchpoint of the dining experience.",images:["https://mir-s3-cdn-cf.behance.net/project_modules/1400/cc5954244808595.69a04fcdd9386.gif","https://mir-cdn.behance.net/v1/rendition/project_modules/max_158/519466244808595.69d7ef78dd354.png","https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1eac63244808595.69d7ef78ddd91.png","https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ad96d9244808595.69d7ef78dd88f.png","https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/264142244808595.69d7ef78de43b.png","https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9b649e244808595.69d7ef78de8e4.png"]},
+  {title:"Nuna",titleHtml:"<em>Nuna</em>",client:"Faranda Collection Medellín",year:"2025",cat:"Branding",tools:["Branding","Visual System"],behance:"https://www.behance.net/gallery/239483365/NUNA-Faranda-Hotels-Resorts",type:"images",desc:"Nuna es el restaurante insignia del Faranda Collection Medellín. La identidad visual refleja un <strong>diseño elegante, limpio y orgánico</strong>, guiado por una paleta que nace de la tierra, la hoja y el barro.",images:["https://mir-s3-cdn-cf.behance.net/project_modules/1400/310c13239483365.6929f04426fd1.gif","https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1d4a22239483365.6929f30cad238.png","https://mir-s3-cdn-cf.behance.net/project_modules/1400/8f2e39239483365.6929f1d2294a7.gif"]},
+  {title:"Menú Restaurante",titleHtml:"Menú <em>Restaurante</em>",client:"Restaurante",year:"2023",cat:"Editorial",tools:["Editorial","Menu Design"],behance:null,type:"images",desc:"Diseño editorial de menú para restaurante. Una composición tipográfica que refleja la propuesta gastronómica del lugar, cuidando cada detalle desde la jerarquía hasta la paleta de color.",images:["https://angelcharr.netlify.app/img/Foto10.png"]},
+  {title:"Barcelona vs Real Madrid",titleHtml:"Barcelona <em>vs</em> Real Madrid",client:"Ilustración personal",year:"2022",cat:"Ilustración",tools:["Illustration","Digital Art"],behance:null,type:"images",desc:"Ilustración deportiva digital del clásico del fútbol. Una pieza que captura la intensidad y rivalidad del encuentro más visto del mundo con estética gráfica contemporánea.",images:["https://angelcharr.netlify.app/img/Foto14.png"]},
+  {title:"San Valentín",titleHtml:"San <em>Valentín</em>",client:"Hotel Caribe",year:"2023",cat:"Social & Campaigns",tools:["Campaign","Hospitality"],behance:null,type:"images",desc:"Campaña digital de San Valentín para Hotel Caribe. Piezas diseñadas para comunicar la propuesta romántica del hotel en redes sociales.",images:["https://angelcharr.netlify.app/img/Foto3.jpg"]},
+  {title:"Empaque de Café",titleHtml:"Empaque de <em>Café</em>",client:"Hotel Caribe",year:"2023",cat:"Branding",tools:["Packaging","Branding"],behance:null,type:"images",desc:"Diseño de packaging para el café de Hotel Caribe. Una propuesta que traduce la identidad del hotel en un empaque elegante y memorable.",images:["https://angelcharr.netlify.app/img/Foto13.png"]},
+  {title:"Buena Vida Beach",titleHtml:"Buena Vida <em>Beach</em>",client:"Festival 2020",year:"2020",cat:"Audiovisual",tools:["Videography","Festival Film"],behance:null,type:"video",videoType:"vimeo",videoId:"363850110",desc:"Realización y videografía del festival Buena Vida Beach. Un proyecto audiovisual que captura la energía de uno de los festivales de playa más importantes de Colombia.",images:[]},
+  {title:"Contenido Gráfico Hotelero - FARANDA",titleHtml:"Contenido Gráfico <em>Hotelero</em>",client:"Faranda Hotel & Resort",year:"2024",cat:"Social & Campaigns",tools:["Hospitality","Digital Content"],behance:"https://www.behance.net/gallery/63779015/CV-ANGEL-CHARR-Social-media-marketing",type:"images",desc:"Gestión y diseño de contenido gráfico para redes sociales de <strong>Faranda Hotel & Resort</strong>. Piezas digitales que comunican la propuesta de valor del hotel con coherencia visual y elegancia en cada publicación.",images:["https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/73c12063779015.688b8ebe5abd7.png"]},
+  {title:"Festival Voces Del Jazz y del Caribe 2024",titleHtml:"Festival Voces <em>Del Jazz</em>",client:"Fundación Cultural Voces Del Jazz",year:"2024",cat:"Social & Campaigns",tools:["Cultural Campaign","Music"],behance:"https://www.behance.net/gallery/63779015/CV-ANGEL-CHARR-Social-media-marketing",type:"images",desc:"Diseño de contenido digital para el <strong>Festival Voces Del Jazz y del Caribe 2024</strong>. Piezas gráficas para redes sociales que capturan la esencia cultural y musical del evento más importante de jazz en la región Caribe.",images:["https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/a5389a63779015.670991a501b77.png"]},
+  {title:"Eclipse",titleHtml:"<em>Eclipse</em>",client:"AB InBev · JdV",year:"2023",cat:"Social & Campaigns",tools:["Creative Proposal","Campaign Identity"],behance:"https://www.behance.net/gallery/63779015/CV-ANGEL-CHARR-Social-media-marketing",type:"images",desc:"Propuesta creativa de contenido digital para <strong>AB InBev</strong>, desarrollada para JdV. Una identidad visual de campaña que mezcla oscuridad, contraste y modernidad para posicionar la marca en redes sociales.",images:["https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/ebd60263779015.670991a4f4144.png"]},
+  {title:"Maando",titleHtml:"<em>Maando</em>",client:"Maando · JdV",year:"2023",cat:"Social & Campaigns",tools:["Creative Content","Digital System"],behance:"https://www.behance.net/gallery/63779015/CV-ANGEL-CHARR-Social-media-marketing",type:"images",desc:"Propuesta creativa de contenido y estrategia visual para <strong>Maando</strong>, desarrollada a través de JdV. Diseño de piezas digitales con identidad propia y presencia sólida en redes sociales.",images:["https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/d1158763779015.670991a5012e4.png"]},
+  {title:"Buena Vida Beach",titleHtml:"Buena Vida <em>Beach</em>",client:"BVB · JdV",year:"2023",cat:"Social & Campaigns",tools:["Festival Campaign","Social Content"],behance:"https://www.behance.net/gallery/63779015/CV-ANGEL-CHARR-Social-media-marketing",type:"images",desc:"Propuesta de contenido gráfico y campaña digital para <strong>Buena Vida Beach</strong>, desarrollada para JdV. Piezas para redes sociales que transmiten la energía y libertad del festival de playa.",images:["https://mir-cdn.behance.net/v1/rendition/project_modules/fs_webp/26218b63779015.67099287781ae.png"]},
+  {title:"Flyer & Diseños de Eventos",titleHtml:"Flyer & Diseños de <em>Eventos</em>",client:"Varios clientes",year:"2023",cat:"Social & Campaigns",tools:["Event Graphics","Visual Communication"],behance:"https://www.behance.net/gallery/63779015/CV-ANGEL-CHARR-Social-media-marketing",type:"images",desc:"Colección de flyers y piezas gráficas para eventos. Diseños de alto impacto visual para comunicar la propuesta de cada evento de forma clara, atractiva y memorable en medios digitales e impresos.",images:["https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/752f6c63779015.6709dcf0464a2.png"]}
+];
+// MODAL
+var curIdx=0;
+function openModal(idx){coverCurtain(function(){curIdx=idx;renderModal(PROJECTS[idx]);document.getElementById("modalOverlay").classList.add("open");document.body.style.overflow="hidden";document.getElementById("modalOverlay").scrollTop=0;revealCurtain();});}
+function closeModal(){coverCurtain(function(){document.getElementById("modalOverlay").classList.remove("open");document.body.style.overflow="";var iframe=document.querySelector(".modal-video-wrap iframe");if(iframe)iframe.src="";revealCurtain();});}
+function handleOvClick(e){if(e.target===document.getElementById("modalOverlay"))closeModal();}
+function goTo(idx){if(idx<0||idx>=PROJECTS.length)return;coverCurtain(function(){curIdx=idx;renderModal(PROJECTS[idx]);document.getElementById("modalOverlay").scrollTop=0;revealCurtain();});}
+function bindModalNav(){document.querySelectorAll(".modal-nav-btn[data-nav]").forEach(function(btn){btn.addEventListener("click",function(){goTo(parseInt(this.dataset.nav,10));});});}
+function renderModal(p){
+  var prev=curIdx>0?PROJECTS[curIdx-1]:null,next=curIdx<PROJECTS.length-1?PROJECTS[curIdx+1]:null;
+  var media="";
+  if(p.type==="video"){var src=p.videoType==="youtube"?"https://www.youtube.com/embed/"+p.videoId+"?autoplay=1&rel=0":"https://player.vimeo.com/video/"+p.videoId+"?autoplay=1";media='<div class="modal-video-wrap"><iframe src="'+src+'" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';}
+  else{media='<div class="modal-images">';p.images.forEach(function(u){media+='<img src="'+u+'" alt="'+p.title+'" loading="lazy">';});media+='</div>';}
+  var tools=p.tools.map(function(t){return'<span class="modal-tool">'+t+'</span>';}).join("");
+  var beh=p.behance?'<a href="'+p.behance+'" target="_blank" class="modal-blink">Ver en Behance →</a>':"";
+  var nav='<div class="modal-nav"><button class="modal-nav-btn" data-nav="'+(curIdx-1)+'" '+(prev?'':'disabled')+'>'+(prev?'← '+prev.title:'')+'</button><button class="modal-nav-btn" data-nav="'+(curIdx+1)+'" '+(next?'':'disabled')+'>'+(next?next.title+' →':'')+'</button></div>';
+  document.getElementById("modalContent").innerHTML='<div class="modal-cat">'+p.cat+' — '+p.year+'</div><h2 class="modal-title">'+p.titleHtml+'</h2><div class="modal-client">'+p.client+'</div><div class="modal-meta"><div><div class="modal-meta-label">Cliente</div><div class="modal-meta-val">'+p.client+'</div></div><div><div class="modal-meta-label">Año</div><div class="modal-meta-val">'+p.year+'</div></div><div><div class="modal-meta-label">Categoría</div><div class="modal-meta-val">'+p.cat+'</div></div></div><p class="modal-desc">'+p.desc+'</p>'+media+'<div class="modal-tools">'+tools+'</div>'+beh+nav;
+  document.getElementById("modalOverlay").scrollTop=0;bindModalNav();
+}
+document.querySelectorAll(".proj-card").forEach(function(card){card.addEventListener("click",function(){openModal(parseInt(this.dataset.index,10));});});
+document.getElementById("modalOverlay").addEventListener("click",handleOvClick);
+document.getElementById("modalClose").addEventListener("click",closeModal);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&document.getElementById("modalOverlay").classList.contains("open"))closeModal();});
+// CONTACT HOVER
+var cSec=document.getElementById("contacto"),ltW=document.getElementById("letsTalkWrap");
+if(ltW&&cSec){ltW.addEventListener("mouseenter",function(){cSec.classList.add("hovered");});ltW.addEventListener("mouseleave",function(){cSec.classList.remove("hovered");});}
+// TRAZO LUMINOSO
+function setupOrbit(btnId,canvasId,opts){
+  var btn=document.getElementById(btnId),canvas=document.getElementById(canvasId);
+  if(!btn||!canvas)return;
+  opts=opts||{};
+  var ctx=canvas.getContext("2d"),angle=0,pathPad=opts.pathPad||6,glow=opts.glow||18,totalPad=pathPad+glow,trailRatio=opts.trailRatio||.28,speed=opts.speed||.0025;
+  function resize(){
+    var r=btn.getBoundingClientRect(),dpr=window.devicePixelRatio||1;
+    var cw=r.width+totalPad*2,ch=r.height+totalPad*2;
+    canvas.width=cw*dpr;canvas.height=ch*dpr;
+    canvas.style.width=cw+"px";canvas.style.height=ch+"px";
+    ctx.setTransform(1,0,0,1,0,0);ctx.scale(dpr,dpr);
+    canvas._cw=cw;canvas._ch=ch;canvas._pW=r.width+pathPad*2;canvas._pH=r.height+pathPad*2;
+  }
+  function draw(){
+    var pW=canvas._pW,pH=canvas._pH;if(!pW||!pH){requestAnimationFrame(draw);return;}
+    ctx.clearRect(0,0,canvas._cw,canvas._ch);ctx.save();ctx.translate(glow,glow);
+    var rx=pH/2,sX=pW-2*rx,sY=Math.max(0,pH-2*rx),perim=2*sX+2*sY+2*Math.PI*rx,trailLen=perim*trailRatio,headDist=angle*perim;
+    ctx.beginPath();ctx.moveTo(rx,0);ctx.lineTo(pW-rx,0);ctx.arcTo(pW,0,pW,rx,rx);ctx.lineTo(pW,pH-rx);ctx.arcTo(pW,pH,pW-rx,pH,rx);ctx.lineTo(rx,pH);ctx.arcTo(0,pH,0,pH-rx,rx);ctx.lineTo(0,rx);ctx.arcTo(0,0,rx,0,rx);ctx.closePath();
+    ctx.strokeStyle="rgba(200,169,110,0.06)";ctx.lineWidth=1;ctx.stroke();
+    for(var i=40;i>=0;i--){var t=i/40,dist=headDist-t*trailLen;if(dist<0)dist+=perim;var pt=gp(pW,pH,rx,dist,perim,sX,sY),pt2=gp(pW,pH,rx,dist-perim/200,perim,sX,sY);ctx.beginPath();ctx.moveTo(pt2.x,pt2.y);ctx.lineTo(pt.x,pt.y);ctx.strokeStyle="rgba(240,200,120,"+((1-t)*(1-t)*.9).toFixed(3)+")";ctx.lineWidth=2+(1-t)*2;ctx.lineCap="round";ctx.stroke();}
+    var head=gp(pW,pH,rx,headDist,perim,sX,sY),glowGrad=ctx.createRadialGradient(head.x,head.y,0,head.x,head.y,18);glowGrad.addColorStop(0,"rgba(255,220,140,0.6)");glowGrad.addColorStop(1,"rgba(200,169,110,0)");ctx.fillStyle=glowGrad;ctx.beginPath();ctx.arc(head.x,head.y,18,0,2*Math.PI);ctx.fill();
+    ctx.restore();angle+=speed;if(angle>=1)angle-=1;requestAnimationFrame(draw);
+  }
+  function gp(W,H,rx,dist,perim,sX,sY){if(dist<0)dist+=perim;dist=dist%perim;var d=dist,aR=Math.PI/2*rx;if(d<=sX)return{x:rx+d,y:0};d-=sX;if(d<=aR){var a=-Math.PI/2+(d/aR)*(Math.PI/2);return{x:W-rx+Math.cos(a)*rx,y:rx+Math.sin(a)*rx};}d-=aR;if(d<=sY)return{x:W,y:rx+d};d-=sY;if(d<=aR){var a2=(d/aR)*(Math.PI/2);return{x:W-rx+Math.cos(a2)*rx,y:H-rx+Math.sin(a2)*rx};}d-=aR;if(d<=sX)return{x:W-rx-d,y:H};d-=sX;if(d<=aR){var a3=Math.PI/2+(d/aR)*(Math.PI/2);return{x:rx+Math.cos(a3)*rx,y:H-rx+Math.sin(a3)*rx};}d-=aR;if(d<=sY)return{x:0,y:H-rx-d};d-=sY;var a4=Math.PI+(d/aR)*(Math.PI/2);return{x:rx+Math.cos(a4)*rx,y:rx+Math.sin(a4)*rx};}
+  resize();draw();if(window.ResizeObserver){new ResizeObserver(resize).observe(btn);}else{window.addEventListener("resize",resize);}
+}
+setupOrbit("letsTalkBtn","orbitCanvas");
+setupOrbit("allProjectsBtn","allProjectsOrbitCanvas",{pathPad:3,glow:9,trailRatio:.2,speed:.002});
+// IDIOMA
+var lang="es";
+function toggleLang(){
+  lang=lang==="es"?"en":"es";
+  document.getElementById("langBtn").textContent=lang==="es"?"EN":"ES";
+  document.querySelectorAll("[data-es]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang)||el.textContent;});
+  document.getElementById("heroLabel").textContent=lang==="es"?"Diseñador gráfico, director visual y realizador audiovisual — Bogotá, Colombia":"Graphic designer, visual director and audiovisual creator — Bogotá, Colombia";
+  document.getElementById("heroTitle").innerHTML=lang==="es"?"Diseño visual para marcas<br>que quieren ser recordadas.":"Visual design for brands<br>that want to be remembered.";
+  document.getElementById("heroSub").textContent=lang==="es"?"Trabajo con marcas gastronómicas, hoteleras, culturales y corporativas que buscan una identidad sólida, sensible y con intención.":"I work with hospitality, culinary, cultural and corporate brands seeking an identity that feels solid, sensitive and intentional.";
+  document.getElementById("stmtText").innerHTML=lang==="es"?"Ocho años construyendo marcas e historias visuales <em>arraigadas en Colombia,</em> con la mirada puesta en el mundo. Trabajo con marcas gastronómicas, hoteleras, musicales y corporativas que buscan ser recordadas por lo que son, no solo por lo que hacen.":"Eight years building brands and visual stories <em>rooted in Colombia,</em> with a global perspective. I work with culinary, hospitality, musical and corporate brands that seek to be remembered for what they are, not just for what they do.";
+  document.getElementById("projTitle").innerHTML=lang==="es"?"Proyectos <em>Seleccionados</em>":"Selected <em>Projects</em>";
+  document.getElementById("footerRight").textContent=lang==="es"?"Diseñador Gráfico & Realizador Audiovisual":"Graphic Designer & Audiovisual Director";
+  var aT={es:["Soy diseñador gráfico, director visual y realizador audiovisual. Mi trabajo se mueve entre la identidad de marca, la fotografía y la construcción de universos visuales con intención.","He desarrollado proyectos para marcas del sector hotelero, gastronómico, cultural y corporativo, construyendo sistemas visuales que buscan equilibrio entre sensibilidad, claridad y carácter.","Más que diseñar piezas, me interesa construir presencias: marcas que se sientan coherentes, memorables y honestas en cada punto de contacto.","<strong>Diseño para que una marca no solo se vea bien, sino que se sienta verdadera.</strong>"],en:["I am a graphic designer, visual director and audiovisual creator. My work moves between brand identity, photography and the creation of visual worlds with intention.","I have developed projects for hospitality, culinary, cultural and corporate brands, building visual systems that seek balance between sensitivity, clarity and character.","More than designing pieces, I am interested in building presence: brands that feel coherent, memorable and honest at every touchpoint.","<strong>I design so a brand not only looks good, but feels true.</strong>"]};
+  document.querySelectorAll("#aboutText p").forEach(function(p,i){if(aT[lang][i])p.innerHTML=aT[lang][i];});
+  document.getElementById("contactTitle").innerHTML=lang==="es"?"¿Tienes un proyecto<br>en <em>mente?</em>":"Have a project<br>in <em>mind?</em>";
+  document.getElementById("contactSub").textContent=lang==="es"?"Si tu marca necesita una identidad más clara, una presencia más sólida o una mirada visual con intención, conversemos.":"If your brand needs a clearer identity, a stronger presence or a visual direction with intention, let's talk.";
+  document.querySelector(".lets-talk-text").textContent=lang==="es"?"Hablemos":"Let's talk";
+}
+document.getElementById("langBtn").addEventListener("click",toggleLang);
+</script>
 </body>
 </html>
